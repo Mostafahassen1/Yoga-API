@@ -1,40 +1,38 @@
 
-package com.example.Yoga.REST;
+package com.example.Yoga.controller;
 
-import com.example.Yoga.EntityYoga.Classes;
-import com.example.Yoga.Service.BaseService;
+import com.example.Yoga.Models.Classes;
 import com.example.Yoga.Service.ClassesService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class ClassesRest {
+@RequestMapping("/yoga-classes")
+public class YogaClassController {
     // field from BaseService
     // implement constructor
     // Handle rest methods
     ClassesService baseService ;
    // @Qualifier("ClassesService")
-    public ClassesRest(   ClassesService baseService) {
+    public YogaClassController(ClassesService baseService) {
 
         this.baseService = baseService;
     }
 
-    @GetMapping("/classes")
+    @GetMapping("/")
     public List<Classes> findAll(){
 
         return  baseService.findAll();
     }
 
-    @GetMapping("/classes/{idClasses}")
-    public Classes findById( @PathVariable int idClasses){
+    @GetMapping("/{id_class}")
+    public Classes findById( @PathVariable int id_class ){
 
-        return  baseService.findById(idClasses);
+        return  baseService.findById(id_class);
     }
 
-    @PostMapping("/classes")
+    @PostMapping("/")
     public List<Classes> SaveAll(@RequestBody List<Classes> theClass ){
 
         return  baseService.saveAll(theClass);

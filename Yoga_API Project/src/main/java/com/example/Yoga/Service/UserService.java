@@ -2,9 +2,8 @@
 
 package com.example.Yoga.Service;
 
-import com.example.Yoga.DAO.UserDAO;
-import com.example.Yoga.EntityYoga.Users;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.Yoga.Repsitory.UserRepo;
+import com.example.Yoga.Models.Users;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +12,9 @@ import java.util.Optional;
 @Service
 public class UserService implements  BaseService<Users>{
 
-    private UserDAO jpaRepository;
+    private UserRepo jpaRepository;
 
-    public UserService(UserDAO  jpaRepository) {
+    public UserService(UserRepo jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
 

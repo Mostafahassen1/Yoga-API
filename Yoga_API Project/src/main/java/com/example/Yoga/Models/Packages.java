@@ -1,8 +1,7 @@
 
-package com.example.Yoga.EntityYoga;
+package com.example.Yoga.Models;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.util.List;
 

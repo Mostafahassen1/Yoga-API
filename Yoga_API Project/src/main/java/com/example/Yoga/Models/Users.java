@@ -1,11 +1,10 @@
 
-package com.example.Yoga.EntityYoga;
+package com.example.Yoga.Models;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.util.List;
 

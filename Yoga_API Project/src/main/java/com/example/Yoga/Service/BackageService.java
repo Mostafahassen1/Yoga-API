@@ -1,7 +1,7 @@
 package com.example.Yoga.Service;
 
-import com.example.Yoga.DAO.PackageDAO;
-import com.example.Yoga.EntityYoga.Packages;
+import com.example.Yoga.Repsitory.PackageRepo;
+import com.example.Yoga.Models.Packages;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,14 +10,16 @@ import java.util.Optional;
 @Service
 public class BackageService implements BaseService<Packages> {
 
-    private PackageDAO packageDAO ;
+    private PackageRepo packageDAO ;
 
-    public BackageService(PackageDAO packageDAO) {
+    public BackageService(PackageRepo packageDAO) {
+
         this.packageDAO = packageDAO;
     }
 
     @Override
     public List<Packages> findAll() {
+
         return packageDAO.findAll();
     }
 

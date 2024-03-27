@@ -1,8 +1,6 @@
 
 package com.example.Yoga.Service;
 
-import com.example.Yoga.EntityYoga.Users;
-
 import java.util.List;
 
 public interface BaseService<T> {

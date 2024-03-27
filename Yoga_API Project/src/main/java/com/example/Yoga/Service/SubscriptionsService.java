@@ -1,7 +1,7 @@
 package com.example.Yoga.Service;
 
-import com.example.Yoga.DAO.SubscriptionDAO;
-import com.example.Yoga.EntityYoga.Subscriptions;
+import com.example.Yoga.Repsitory.SubscriptionRepo;
+import com.example.Yoga.Models.Subscriptions;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.Optional;
 @Service
 public class SubscriptionsService implements BaseService<Subscriptions>{
 
-    SubscriptionDAO subscriptionDAO ;
+    SubscriptionRepo subscriptionDAO ;
 
-    public SubscriptionsService(SubscriptionDAO subscriptionDAO) {
+    public SubscriptionsService(SubscriptionRepo subscriptionDAO) {
         this.subscriptionDAO = subscriptionDAO;
     }
 
@@ -28,6 +28,7 @@ public class SubscriptionsService implements BaseService<Subscriptions>{
 
     @Override
     public List<Subscriptions> saveAll(List<Subscriptions> entity) {
+
         return subscriptionDAO.saveAll(entity) ;
     }
 }

@@ -1,38 +1,43 @@
 
-    package com.example.Yoga.REST;
+    package com.example.Yoga.controller;
     
-    import com.example.Yoga.EntityYoga.Users;
-    import com.example.Yoga.Service.BaseService;
+    import com.example.Yoga.Models.Users;
     import com.example.Yoga.Service.UserService;
-    import org.springframework.beans.factory.annotation.Qualifier;
+    import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
     import java.util.List;
     
     @RestController
-    @RequestMapping("/api")
-    public class UserRest {
+    @RequestMapping("/users")
+    public class UserController {
     
         private UserService userService ;
     
-        public UserRest(  UserService userService) {
+        public UserController(UserService userService) {
             this.userService = userService;
         }
     
-        @PostMapping("/users")
+        @PostMapping("/")
         public List<Users> saveAll(@RequestBody List<Users> users) {
 
             return userService.saveAll(users);
         }
 
-        @GetMapping("/users/{idUser}")
-        public Users FindByID(@PathVariable int idUser ){
-            return (Users) userService.findById(idUser);
+        @GetMapping("/{id_user}")
+        public ResponseEntity FindByID(@PathVariable int id_user ){
+           // return (Users) userService.findById(id_user);
+            Users user = userService.findById(id_user) ;
+            if( user != null )
+                return ResponseEntity.ok().body(user);
+            else
+                return ResponseEntity.notFound().build();
 
         }
 
-        @GetMapping("/users")
+        @GetMapping("/")
         public List<Users>FindAll(){
+
             return userService.findAll();
         }
     

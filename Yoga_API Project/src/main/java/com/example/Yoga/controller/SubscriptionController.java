@@ -1,31 +1,33 @@
-package com.example.Yoga.REST;
+package com.example.Yoga.controller;
 
-import com.example.Yoga.EntityYoga.Subscriptions;
+import com.example.Yoga.Models.Subscriptions;
 import com.example.Yoga.Service.SubscriptionsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class SubscriptionRest {
+@RequestMapping("/subscriptions")
+public class SubscriptionController {
     SubscriptionsService  subscriptionsService ;
 
-    public SubscriptionRest(SubscriptionsService subscriptionsService) {
+    public SubscriptionController(SubscriptionsService subscriptionsService) {
         this.subscriptionsService = subscriptionsService;
     }
 
-    @GetMapping("/subscription/{idSubscribe}")
-    public Subscriptions FindByID(@PathVariable int idSubscribe ) {
-        return subscriptionsService.findById(idSubscribe);
+    @GetMapping("/{id_subscribe}")
+    public Subscriptions FindByID(@PathVariable int id_subscribe ) {
+
+        return subscriptionsService.findById(id_subscribe);
     }
 
-    @GetMapping("/subscription")
+    @GetMapping("/")
     public List<Subscriptions> findAll(){
+
         return subscriptionsService.findAll();
     }
 
-    @PostMapping("/subscription")
+    @PostMapping("/")
     public List<Subscriptions>saveAll(@RequestBody List<Subscriptions> entity){
         return subscriptionsService.saveAll(entity) ;
     }
@@ -41,7 +43,7 @@ public class SubscriptionRest {
 
 
 
----> Post data   --> http://localhost:8080/api/subscription
+---> Post data   --> http://localhost:8080/subscriptions/
 Format :
 
 [

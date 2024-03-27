@@ -1,7 +1,7 @@
 package com.example.Yoga.Service;
 
-import com.example.Yoga.DAO.PaymentDAO;
-import com.example.Yoga.EntityYoga.Payment;
+import com.example.Yoga.Repsitory.PaymentRepo;
+import com.example.Yoga.Models.Payment;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.Optional;
 @Service
 public class PaymentService implements BaseService<Payment>{
 
-    PaymentDAO paymentDAO ;
+    PaymentRepo paymentDAO ;
 
-    public PaymentService(PaymentDAO paymentDAO) {
+    public PaymentService(PaymentRepo paymentDAO) {
         this.paymentDAO = paymentDAO;
     }
 

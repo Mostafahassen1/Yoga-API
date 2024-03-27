@@ -1,33 +1,35 @@
 
-package com.example.Yoga.REST;
+package com.example.Yoga.controller;
 
-import com.example.Yoga.EntityYoga.Attendanceing;
-import com.example.Yoga.EntityYoga.Classes;
+import com.example.Yoga.Models.Attendanceing;
 import com.example.Yoga.Service.AttendnceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class AttendanceRest {
+@RequestMapping("/attendances")
+public class AttendanceController {
     private AttendnceService attendnceService ;
 
-    public AttendanceRest(AttendnceService attendnceService) {
+    public AttendanceController(AttendnceService attendnceService) {
+
         this.attendnceService = attendnceService;
     }
 
-    @GetMapping("/attendance")
+    @GetMapping("/")
     public List<Attendanceing> FindAll(){
+
         return attendnceService.findAll();
     }
 
-    @GetMapping("/attendance/{attendId}")
-    public Attendanceing FindByid(@PathVariable int attendId){
-        return attendnceService.findById(attendId);
+    @GetMapping("/{id_attend}")
+    public Attendanceing FindByid(@PathVariable int id_attend){
+
+        return attendnceService.findById(id_attend);
     }
 
-    @PostMapping("/attendance")
+    @PostMapping("/")
         public List<Attendanceing> SaveAll(@RequestBody List<Attendanceing> theAttend){
             return attendnceService.saveAll(theAttend) ;
     }

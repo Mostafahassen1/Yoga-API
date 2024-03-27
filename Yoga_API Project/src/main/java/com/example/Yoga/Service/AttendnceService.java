@@ -2,8 +2,8 @@
 package com.example.Yoga.Service;
 
 
-import com.example.Yoga.DAO.AttendanceDAO;
-import com.example.Yoga.EntityYoga.Attendanceing;
+import com.example.Yoga.Repsitory.AttendanceRepo;
+import com.example.Yoga.Models.Attendanceing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.Optional;
 @Service
 public class AttendnceService implements BaseService<Attendanceing>{
 
-    private AttendanceDAO  attendanceDAO ;
+    private AttendanceRepo attendanceDAO ;
 
-    public AttendnceService(AttendanceDAO attendanceDAO) {
+    public AttendnceService(AttendanceRepo attendanceDAO) {
         this.attendanceDAO = attendanceDAO;
     }
 

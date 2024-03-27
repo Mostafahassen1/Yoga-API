@@ -1,32 +1,34 @@
-package com.example.Yoga.REST;
+package com.example.Yoga.controller;
 
-import com.example.Yoga.EntityYoga.Packages;
+import com.example.Yoga.Models.Packages;
 import com.example.Yoga.Service.BackageService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class PackageRest {
+@RequestMapping("/packages")
+public class PackageController {
 
     private BackageService  backageService ;
 
-    public PackageRest(BackageService backageService) {
+    public PackageController(BackageService backageService) {
+
         this.backageService = backageService;
     }
-    @GetMapping("/package")
+    @GetMapping("/")
     public List<Packages> FindAll(){
+
         return backageService.findAll();
     }
 
-    @GetMapping("/package/{packageId}")
-    public Packages FindById( @PathVariable int id ){
-        return backageService.findById( id ) ;
+    @GetMapping("/{id_package}")
+    public Packages FindById( @PathVariable int id_package ){
+        return backageService.findById( id_package ) ;
 
     }
 
-    @PostMapping("/package")
+    @PostMapping("/")
     public List<Packages> SaveAll(@RequestBody  List<Packages> entity ){
 
         return backageService.saveAll(entity) ;

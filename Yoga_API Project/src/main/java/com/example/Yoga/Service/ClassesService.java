@@ -1,10 +1,7 @@
 package com.example.Yoga.Service;
 
-import com.example.Yoga.DAO.ClassesDAO;
-import com.example.Yoga.EntityYoga.Classes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.Yoga.Repsitory.ClassesRepo;
+import com.example.Yoga.Models.Classes;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +10,9 @@ import java.util.Optional;
 @Service
 public class ClassesService implements BaseService<Classes>{
 
-    private ClassesDAO jpaRepository;
+    private ClassesRepo jpaRepository;
 
-    public ClassesService(  ClassesDAO jpaRepository) {
+    public ClassesService(  ClassesRepo jpaRepository) {
 
         this.jpaRepository =  jpaRepository;
     }

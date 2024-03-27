@@ -1,8 +1,7 @@
-package com.example.Yoga.EntityYoga;
+package com.example.Yoga.Models;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

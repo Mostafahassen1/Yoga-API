@@ -1,11 +1,10 @@
 
-package com.example.Yoga.EntityYoga;
+package com.example.Yoga.Models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

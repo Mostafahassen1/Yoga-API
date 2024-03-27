@@ -1,45 +1,47 @@
-package com.example.Yoga.REST;
+package com.example.Yoga.controller;
 
 
-import com.example.Yoga.EntityYoga.Payment;
+import com.example.Yoga.Models.Payment;
 import com.example.Yoga.Service.PaymentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class PaymentRest {
+@RequestMapping("/payments")
+public class PaymentController {
     // implement the field of BaseService
     // implement the constructor
     // implement and handle Rest methods
 
     PaymentService paymentService ;
 
-    public PaymentRest(PaymentService paymentService) {
+    public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/payment")
+    @GetMapping("/")
     public List<Payment> findAll(){
         return paymentService.findAll() ;
 
     }
 
-    @GetMapping("/payment/{idPayment}")
-    public Payment findById(@PathVariable int idPayment ){
-        return paymentService.findById(idPayment) ;
+    @GetMapping("/{id-Payment}")
+    public Payment findById(@PathVariable int id_Payment ){
+
+        return paymentService.findById(id_Payment) ;
     }
 
-    @PostMapping("/payment")
+    @PostMapping("/")
     public List<Payment> saveAll(@RequestBody List<Payment> entity){
+
         return paymentService.saveAll(entity) ;
     }
 }
 
 
-// the format to push
-// SAVE ALL by POST ->> http://localhost:8080/api/payment
+// the format to Post
+// SAVE ALL by POST ->> http://localhost:8080/payments/
 /*
 [
 {
