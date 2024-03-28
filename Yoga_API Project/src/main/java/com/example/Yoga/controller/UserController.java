@@ -3,6 +3,7 @@
     
     import com.example.Yoga.Models.Users;
     import com.example.Yoga.Service.UserService;
+    import org.springframework.http.HttpHeaders;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
@@ -11,39 +12,55 @@
     @RestController
     @RequestMapping("/users")
     public class UserController {
-    
-        private UserService userService ;
-    
+
+        private UserService userService;
+
         public UserController(UserService userService) {
             this.userService = userService;
         }
-    
+
         @PostMapping("/")
-        public List<Users> saveAll(@RequestBody List<Users> users) {
-
-            return userService.saveAll(users);
-        }
-
-        @GetMapping("/{id_user}")
-        public ResponseEntity FindByID(@PathVariable int id_user ){
-           // return (Users) userService.findById(id_user);
-            Users user = userService.findById(id_user) ;
-            if( user != null )
-                return ResponseEntity.ok().body(user);
+        public ResponseEntity<List<Users>> saveAll(@RequestBody List<Users> users){
+            List<Users> usersList = userService.saveAll(users) ;
+            if(usersList != null || usersList.isEmpty() )
+                return ResponseEntity.ok().body(usersList);
             else
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.badRequest().build();
+        }
+        @GetMapping("/{id_user}")
+        public ResponseEntity FindByID(@PathVariable int id_user) {
+            // return (Users) userService.findById(id_user);
+            HttpHeaders headers = new HttpHeaders();
+
+            Users user = userService.findById(id_user);
+            if (user != null) {
+                headers.add("User_Header ", "User found successfully. User details for ID " + id_user);
+                return ResponseEntity.ok().headers(headers).body(user);
+            } else {
+                headers.add("User_Header ", "User not found for ID " + id_user);
+                return ResponseEntity.notFound().headers(headers).build();
+            }
 
         }
 
         @GetMapping("/")
-        public List<Users>FindAll(){
+        public ResponseEntity<List<Users>> FindAll() {
+            List<Users> users = userService.findAll();
+            HttpHeaders headers = new HttpHeaders();
 
-            return userService.findAll();
+            if (!users.isEmpty()) {
+                headers.add("UsersList_Header", "User Table is not empty");
+                return ResponseEntity.ok().headers(headers).body(users);
+            }
+
+            else {
+                headers.add("UsersList_Header", "No content available");
+                return ResponseEntity.noContent().headers(headers).build();
+            }
+
         }
-    
-    }
-    
 
+    }
 
                             // format that used
     /*

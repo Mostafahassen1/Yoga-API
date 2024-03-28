@@ -1,7 +1,10 @@
 package com.example.Yoga.controller;
 
 import com.example.Yoga.Models.Subscriptions;
+import com.example.Yoga.Models.Users;
 import com.example.Yoga.Service.SubscriptionsService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,12 +17,33 @@ public class SubscriptionController {
     public SubscriptionController(SubscriptionsService subscriptionsService) {
         this.subscriptionsService = subscriptionsService;
     }
+/*
+                    >>>>>> old Version >>>>>>>>
 
     @GetMapping("/{id_subscribe}")
     public Subscriptions FindByID(@PathVariable int id_subscribe ) {
 
         return subscriptionsService.findById(id_subscribe);
     }
+
+ */
+@GetMapping("/{id_subscribe}")
+public ResponseEntity FindByID(@PathVariable int id_subscribe) {
+
+    HttpHeaders headers = new HttpHeaders();
+
+    Subscriptions subscriptions  = subscriptionsService.findById(id_subscribe);
+    if (subscriptions != null) {
+        headers.add("subscribe_Header ", "subscriber found successfully. subscriber details for ID " + id_subscribe);
+        return ResponseEntity.ok().headers(headers).body(subscriptions);
+    } else {
+        headers.add("subscribe_Header ", "subscriber not found for ID " + id_subscribe);
+        return ResponseEntity.notFound().headers(headers).build();
+    }
+
+}
+/*
+                               >>>>>> old Version >>>>>>>>
 
     @GetMapping("/")
     public List<Subscriptions> findAll(){
@@ -31,7 +55,23 @@ public class SubscriptionController {
     public List<Subscriptions>saveAll(@RequestBody List<Subscriptions> entity){
         return subscriptionsService.saveAll(entity) ;
     }
+*/
+@GetMapping("/")
+public ResponseEntity<List<Subscriptions>> FindAll() {
+    List<Subscriptions> subscriptions = subscriptionsService.findAll();
+    HttpHeaders headers = new HttpHeaders();
 
+    if (!subscriptions.isEmpty()) {
+        headers.add("SubscriptionsList_Header", "Subscription Table is not empty");
+        return ResponseEntity.ok().headers(headers).body(subscriptions);
+    }
+
+    else {
+        headers.add("SubscriptionsList_Header", "No content available");
+        return ResponseEntity.noContent().headers(headers).build();
+    }
+
+}
 
 }
 

@@ -2,7 +2,10 @@ package com.example.Yoga.controller;
 
 
 import com.example.Yoga.Models.Payment;
+import com.example.Yoga.Models.Users;
 import com.example.Yoga.Service.PaymentService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,29 +23,53 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/")
-    public List<Payment> findAll(){
-        return paymentService.findAll() ;
+@GetMapping("/")
+public ResponseEntity<List<Payment>> FindAll() {
+    List<Payment> payments = paymentService.findAll();
+    HttpHeaders headers = new HttpHeaders();
 
+    if (!payments.isEmpty()) {
+        headers.add("PaymentList_Header", "Payment Table is not empty");
+        return ResponseEntity.ok().headers(headers).body(payments);
     }
 
-    @GetMapping("/{id-Payment}")
-    public Payment findById(@PathVariable int id_Payment ){
-
-        return paymentService.findById(id_Payment) ;
+    else {
+        headers.add("PaymentList_Header", "No content available");
+        return ResponseEntity.noContent().headers(headers).build();
     }
 
-    @PostMapping("/")
-    public List<Payment> saveAll(@RequestBody List<Payment> entity){
-
-        return paymentService.saveAll(entity) ;
-    }
 }
 
+@GetMapping("/{id_Payment}")
+    public ResponseEntity FindByID(@PathVariable int id_Payment) {
 
-// the format to Post
-// SAVE ALL by POST ->> http://localhost:8080/payments/
+        HttpHeaders headers = new HttpHeaders();
+
+        Payment payment = paymentService.findById(id_Payment);
+        if (payment != null) {
+            headers.add("User_Header ", "Payment found successfully. User details for ID " + id_Payment);
+            return ResponseEntity.ok().headers(headers).body(payment);
+        } else {
+            headers.add("Payment_Header ", "Payment not found for ID " + id_Payment);
+            return ResponseEntity.notFound().headers(headers).build();
+        }
+
+    }
+
+@PostMapping("/")
+public ResponseEntity<List<Payment>> saveAll(@RequestBody List<Payment> payments ){
+    List<Payment> paymentList = paymentService.saveAll(payments) ;
+    if(paymentList != null || paymentList.isEmpty() )
+        return ResponseEntity.ok().body(paymentList);
+    else
+        return ResponseEntity.badRequest().build();
+}
+}
+
 /*
+the format to Post
+ SAVE ALL by POST ->> http://localhost:8080/payments/
+
 [
 {
 
