@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="Payment")
-public class Payment {
+public class PaymentYoga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name = "id_subscription" , nullable = false )
     @JsonIgnoreProperties({"user" , "subscription_data" , "number_Of_Session" , "aPackage" } )
-    private Subscriptions subscripe ;
+    private Subscription subscripe ;
 
     @Column(nullable = false)
     private  int amount ;
@@ -31,10 +31,10 @@ public class Payment {
     @Column(nullable = false)
     private String paymentMethod ;
 
-    public Payment() {
+    public PaymentYoga() {
     }
 
-    public Payment(Subscriptions subscripe, int amount, LocalDateTime payment_date, String paymentMethod) {
+    public PaymentYoga(Subscription subscripe, int amount, LocalDateTime payment_date, String paymentMethod) {
         this.subscripe = subscripe;
         this.amount = amount;
         this.payment_date = LocalDateTime.now();
@@ -49,11 +49,11 @@ public class Payment {
         this.id = id;
     }
 
-    public Subscriptions getSubscripe() {
+    public Subscription getSubscripe() {
         return subscripe;
     }
 
-    public void setSubscripe(Subscriptions subscripe) {
+    public void setSubscripe(Subscription subscripe) {
         this.subscripe = subscripe;
     }
 

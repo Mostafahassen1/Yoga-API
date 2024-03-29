@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="Package")
-public class Packages {
+public class PackageYoga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id ;
@@ -19,13 +19,13 @@ public class Packages {
 
 
     @OneToMany(mappedBy = "aPackage")
-   private List<Subscriptions> subscriptionsList ;
+   private List<Subscription> subscriptionsList ;
 
 
-    public Packages() {
+    public PackageYoga() {
     }
 
-    public Packages(String name, int price) {
+    public PackageYoga(String name, int price) {
         this.name = name;
         this.price = price;
     }

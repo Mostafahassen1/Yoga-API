@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name ="attendanceing")
+@Table(name ="attend")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Attendanceing {
     @Id
@@ -19,12 +19,12 @@ public class Attendanceing {
     @ManyToOne
     @JoinColumn(name="Student_id")
     @JsonIgnoreProperties({"first_name", "last_name", "phone", "email", "nationality", "date_of_birth"})
-    private Users aUser ;
+    private UserYoga aUser ;
 
    @ManyToOne
    @JoinColumn(name="class_id")
    @JsonIgnoreProperties({"title", "description", "start_time", "capacity"})
-   private Classes aClass ;
+   private ClassYoga aClass ;
 
 
     private LocalDateTime attendance_date ;
@@ -33,29 +33,29 @@ public class Attendanceing {
     public Attendanceing() {
     }
 
-    public Attendanceing(Classes aClass , Users aUser ) {
+    public Attendanceing(ClassYoga aClass , UserYoga aUser ) {
         this.aUser = aUser;
         this.aClass = aClass ;
         this.attendance_date = LocalDateTime.now();
     }
 
-    public Users getaUser() {
+    public UserYoga getaUser() {
         return aUser;
     }
 
 
-    public void setaUser(Users aUser) {
+    public void setaUser(UserYoga aUser) {
         this.aUser = aUser;
     }
 
-    public Classes getaClass() {
+    public ClassYoga getaClass() {
 
         return  aClass;
     }
 
 
 
-    public void setaClass(Classes aClass) {
+    public void setaClass(ClassYoga aClass) {
 
         this.aClass = aClass ;
     }

@@ -1,7 +1,7 @@
 
     package com.example.Yoga.controller;
     
-    import com.example.Yoga.Models.Users;
+    import com.example.Yoga.Models.UserYoga;
     import com.example.Yoga.Service.UserService;
     import org.springframework.http.HttpHeaders;
     import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@
         }
 
         @PostMapping("/")
-        public ResponseEntity<List<Users>> saveAll(@RequestBody List<Users> users){
-            List<Users> usersList = userService.saveAll(users) ;
+        public ResponseEntity<List<UserYoga>> saveAll(@RequestBody List<UserYoga> users){
+            List<UserYoga> usersList = userService.saveAll(users) ;
             if(usersList != null || usersList.isEmpty() )
                 return ResponseEntity.ok().body(usersList);
             else
@@ -32,7 +32,7 @@
             // return (Users) userService.findById(id_user);
             HttpHeaders headers = new HttpHeaders();
 
-            Users user = userService.findById(id_user);
+            UserYoga user = userService.findById(id_user);
             if (user != null) {
                 headers.add("User_Header ", "User found successfully. User details for ID " + id_user);
                 return ResponseEntity.ok().headers(headers).body(user);
@@ -44,8 +44,8 @@
         }
 
         @GetMapping("/")
-        public ResponseEntity<List<Users>> FindAll() {
-            List<Users> users = userService.findAll();
+        public ResponseEntity<List<UserYoga>> FindAll() {
+            List<UserYoga> users = userService.findAll();
             HttpHeaders headers = new HttpHeaders();
 
             if (!users.isEmpty()) {

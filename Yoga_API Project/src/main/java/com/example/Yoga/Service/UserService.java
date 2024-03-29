@@ -3,14 +3,14 @@
 package com.example.Yoga.Service;
 
 import com.example.Yoga.Repsitory.UserRepo;
-import com.example.Yoga.Models.Users;
+import com.example.Yoga.Models.UserYoga;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements  BaseService<Users>{
+public class UserService implements  BaseService<UserYoga>{
 
     private UserRepo jpaRepository;
 
@@ -19,20 +19,20 @@ public class UserService implements  BaseService<Users>{
     }
 
     @Override
-    public List<Users> findAll() {
+    public List<UserYoga> findAll() {
         return jpaRepository.findAll();
 
 
     }
 
     @Override
-    public Users findById(int id) {
-        Optional<Users> userOptional = jpaRepository.findById(id);
+    public UserYoga findById(int id) {
+        Optional<UserYoga> userOptional = jpaRepository.findById(id);
         return userOptional.orElse(null);
     }
 
     @Override
-    public List<Users> saveAll(List<Users> users) {
+    public List<UserYoga> saveAll(List<UserYoga> users) {
         return  jpaRepository.saveAll(users);
 
     }

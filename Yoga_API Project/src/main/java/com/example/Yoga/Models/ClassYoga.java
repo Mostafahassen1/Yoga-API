@@ -6,8 +6,8 @@ import java.util.List;
 
 
 @Entity
-@Table(name="classes")
-public class Classes {
+@Table(name="class_")
+public class ClassYoga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class Classes {
 
    @OneToMany(mappedBy = "aClass")
     private List<Attendanceing> attendanceings ;
-    public Classes() {
+    public ClassYoga() {
     }
 
-    public Classes(String title, String description, String start_time, String capacity) {
+    public ClassYoga(String title, String description, String start_time, String capacity) {
         this.title = title;
         this.description = description;
         this.start_time = start_time;

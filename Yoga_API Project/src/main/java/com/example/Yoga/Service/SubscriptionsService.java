@@ -1,13 +1,13 @@
 package com.example.Yoga.Service;
 
 import com.example.Yoga.Repsitory.SubscriptionRepo;
-import com.example.Yoga.Models.Subscriptions;
+import com.example.Yoga.Models.Subscription;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 @Service
-public class SubscriptionsService implements BaseService<Subscriptions>{
+public class SubscriptionsService implements BaseService<Subscription>{
 
     SubscriptionRepo subscriptionDAO ;
 
@@ -16,18 +16,18 @@ public class SubscriptionsService implements BaseService<Subscriptions>{
     }
 
     @Override
-    public List<Subscriptions> findAll() {
+    public List<Subscription> findAll() {
         return subscriptionDAO.findAll();
     }
 
     @Override
-    public Subscriptions findById(int id) {
-        Optional<Subscriptions> subscriptions = subscriptionDAO.findById(id);
+    public Subscription findById(int id) {
+        Optional<Subscription> subscriptions = subscriptionDAO.findById(id);
         return subscriptions.orElse(null) ;
     }
 
     @Override
-    public List<Subscriptions> saveAll(List<Subscriptions> entity) {
+    public List<Subscription> saveAll(List<Subscription> entity) {
 
         return subscriptionDAO.saveAll(entity) ;
     }

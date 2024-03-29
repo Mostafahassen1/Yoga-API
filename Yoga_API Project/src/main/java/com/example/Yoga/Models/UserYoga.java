@@ -9,12 +9,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name="users")
-public class Users {
+@Table(name="user_")
+public class UserYoga {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
+
+    @OneToOne(mappedBy = "aUser")
+    private Subscription subscriptions ;
     private String first_name ;
     private String last_name ;
 
@@ -32,15 +35,14 @@ public class Users {
     @OneToMany(mappedBy = "aUser")
     private List<Attendanceing> attendanceingList ;
 
-    @OneToOne(mappedBy = "user")
-    private Subscriptions subscriptions ;
 
 
-    public Users() {
+
+    public UserYoga() {
     }
 
-    public Users(String first_name, String last_name, String phone,
-                 String email, String nationality ) {
+    public UserYoga(String first_name, String last_name, String phone,
+                    String email, String nationality ) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone = phone;

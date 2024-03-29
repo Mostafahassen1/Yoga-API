@@ -1,7 +1,6 @@
 package com.example.Yoga.controller;
 
-import com.example.Yoga.Models.Subscriptions;
-import com.example.Yoga.Models.Users;
+import com.example.Yoga.Models.Subscription;
 import com.example.Yoga.Service.SubscriptionsService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public ResponseEntity FindByID(@PathVariable int id_subscribe) {
 
     HttpHeaders headers = new HttpHeaders();
 
-    Subscriptions subscriptions  = subscriptionsService.findById(id_subscribe);
+    Subscription subscriptions  = subscriptionsService.findById(id_subscribe);
     if (subscriptions != null) {
         headers.add("subscribe_Header ", "subscriber found successfully. subscriber details for ID " + id_subscribe);
         return ResponseEntity.ok().headers(headers).body(subscriptions);
@@ -57,8 +56,8 @@ public ResponseEntity FindByID(@PathVariable int id_subscribe) {
     }
 */
 @GetMapping("/")
-public ResponseEntity<List<Subscriptions>> FindAll() {
-    List<Subscriptions> subscriptions = subscriptionsService.findAll();
+public ResponseEntity<List<Subscription>> FindAll() {
+    List<Subscription> subscriptions = subscriptionsService.findAll();
     HttpHeaders headers = new HttpHeaders();
 
     if (!subscriptions.isEmpty()) {

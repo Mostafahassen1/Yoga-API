@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name="Subscriptions")
-public class Subscriptions {
+@Table(name="Subscription")
+public class Subscription {
 
 
     @Id
@@ -20,18 +20,18 @@ public class Subscriptions {
     @OneToOne
     @JoinColumn(name = "User_id" , nullable = false)
     @JsonIgnoreProperties({"first_name","last_name","phone" , "email" , "nationality" , "date_of_birth"})
-    private Users user ;
+    private UserYoga  aUser ;
 
 
 
      @ManyToOne
      @JoinColumn(name ="id_Package" )
       @JsonIgnoreProperties({"name" , "price"})
-     private Packages aPackage ;
+     private PackageYoga aPackage ;
 
 
     @OneToMany(mappedBy = "subscripe")
-    private List<Payment> paymentList;
+    private List<PaymentYoga> paymentList;
 
 
     @Column(nullable = false)
@@ -40,13 +40,13 @@ public class Subscriptions {
     @Column(nullable = false)
     private LocalDateTime Subscription_data ; // this will add automatically
 
-    public Subscriptions() {
+    public Subscription() {
     }
 
 
 
-    public Subscriptions(Users user, Packages aPackage ,  int number_Of_Session) {
-        this.user = user;
+    public Subscription(UserYoga user, PackageYoga aPackage , int number_Of_Session) {
+        this.aUser = user;
        this.aPackage = aPackage;
         Subscription_data = LocalDateTime.now();
         this.number_Of_Session = number_Of_Session;
@@ -60,22 +60,22 @@ public class Subscriptions {
         this.id = id;
     }
 
-   public Users getUser() {
-        return user;
+   public UserYoga getUser() {
+        return aUser;
     }
 
 
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUser(UserYoga user) {
+        this.aUser = user;
     }
 
 
-    public Packages getaPackage() {
+    public PackageYoga getaPackage() {
         return aPackage;
     }
 
-    public void setaPackage(Packages aPackage) {
+    public void setaPackage(PackageYoga aPackage) {
         this.aPackage = aPackage;
     }
 
@@ -101,7 +101,7 @@ public class Subscriptions {
     public String toString() {
         return "Subscriptions{" +
                 "id=" + id +
-                ", user=" + user +
+                ", user =" + aUser +
                 ", aPackage=" + aPackage +
                 ", number_Of_Session=" + number_Of_Session +
                 ", Subscription_data=" + Subscription_data +

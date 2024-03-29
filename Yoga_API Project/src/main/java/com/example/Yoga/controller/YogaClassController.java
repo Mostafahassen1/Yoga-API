@@ -1,7 +1,7 @@
 
 package com.example.Yoga.controller;
 
-import com.example.Yoga.Models.Classes;
+import com.example.Yoga.Models.ClassYoga;
 import com.example.Yoga.Service.ClassesService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +21,19 @@ public class YogaClassController {
     }
 
     @GetMapping("/")
-    public List<Classes> findAll(){
+    public List<ClassYoga> findAll(){
 
         return  baseService.findAll();
     }
 
     @GetMapping("/{id_class}")
-    public Classes findById( @PathVariable int id_class ){
+    public ClassYoga findById(@PathVariable int id_class ){
 
         return  baseService.findById(id_class);
     }
 
     @PostMapping("/")
-    public List<Classes> SaveAll(@RequestBody List<Classes> theClass ){
+    public List<ClassYoga> SaveAll(@RequestBody List<ClassYoga> theClass ){
 
         return  baseService.saveAll(theClass);
     }

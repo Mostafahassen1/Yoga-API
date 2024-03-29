@@ -1,8 +1,7 @@
 package com.example.Yoga.controller;
 
 
-import com.example.Yoga.Models.Payment;
-import com.example.Yoga.Models.Users;
+import com.example.Yoga.Models.PaymentYoga;
 import com.example.Yoga.Service.PaymentService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,8 @@ public class PaymentController {
     }
 
 @GetMapping("/")
-public ResponseEntity<List<Payment>> FindAll() {
-    List<Payment> payments = paymentService.findAll();
+public ResponseEntity<List<PaymentYoga>> FindAll() {
+    List<PaymentYoga> payments = paymentService.findAll();
     HttpHeaders headers = new HttpHeaders();
 
     if (!payments.isEmpty()) {
@@ -45,7 +44,7 @@ public ResponseEntity<List<Payment>> FindAll() {
 
         HttpHeaders headers = new HttpHeaders();
 
-        Payment payment = paymentService.findById(id_Payment);
+        PaymentYoga payment = paymentService.findById(id_Payment);
         if (payment != null) {
             headers.add("User_Header ", "Payment found successfully. User details for ID " + id_Payment);
             return ResponseEntity.ok().headers(headers).body(payment);
@@ -57,8 +56,8 @@ public ResponseEntity<List<Payment>> FindAll() {
     }
 
 @PostMapping("/")
-public ResponseEntity<List<Payment>> saveAll(@RequestBody List<Payment> payments ){
-    List<Payment> paymentList = paymentService.saveAll(payments) ;
+public ResponseEntity<List<PaymentYoga>> saveAll(@RequestBody List<PaymentYoga> payments ){
+    List<PaymentYoga> paymentList = paymentService.saveAll(payments) ;
     if(paymentList != null || paymentList.isEmpty() )
         return ResponseEntity.ok().body(paymentList);
     else

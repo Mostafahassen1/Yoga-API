@@ -1,14 +1,14 @@
 package com.example.Yoga.Service;
 
 import com.example.Yoga.Repsitory.PackageRepo;
-import com.example.Yoga.Models.Packages;
+import com.example.Yoga.Models.PackageYoga;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BackageService implements BaseService<Packages> {
+public class BackageService implements BaseService<PackageYoga> {
 
     private PackageRepo packageDAO ;
 
@@ -18,20 +18,20 @@ public class BackageService implements BaseService<Packages> {
     }
 
     @Override
-    public List<Packages> findAll() {
+    public List<PackageYoga> findAll() {
 
         return packageDAO.findAll();
     }
 
 
     @Override
-    public Packages findById(int id) {
-        Optional<Packages> optionPackage = packageDAO.findById(id) ;
+    public PackageYoga findById(int id) {
+        Optional<PackageYoga> optionPackage = packageDAO.findById(id) ;
         return optionPackage.orElse(null) ;
     }
 
     @Override
-    public List<Packages> saveAll(List<Packages> entity) {
+    public List<PackageYoga> saveAll(List<PackageYoga> entity) {
         return packageDAO.saveAll(entity);
     }
 }

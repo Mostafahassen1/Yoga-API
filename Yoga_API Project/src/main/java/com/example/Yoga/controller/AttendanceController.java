@@ -2,7 +2,6 @@
 package com.example.Yoga.controller;
 
 import com.example.Yoga.Models.Attendanceing;
-import com.example.Yoga.Models.Users;
 import com.example.Yoga.Service.AttendnceService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;

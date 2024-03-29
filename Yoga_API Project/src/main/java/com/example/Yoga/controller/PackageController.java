@@ -1,8 +1,6 @@
 package com.example.Yoga.controller;
 
-import com.example.Yoga.Models.Packages;
-import com.example.Yoga.Models.Payment;
-import com.example.Yoga.Models.Users;
+import com.example.Yoga.Models.PackageYoga;
 import com.example.Yoga.Service.BackageService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +21,8 @@ public class PackageController {
 
 
     @GetMapping("/")
-    public ResponseEntity<List<Packages>> FindAll() {
-        List<Packages> packages = backageService.findAll();
+    public ResponseEntity<List<PackageYoga>> FindAll() {
+        List<PackageYoga> packages = backageService.findAll();
         HttpHeaders headers = new HttpHeaders();
 
         if (!packages.isEmpty()) {
@@ -44,7 +42,7 @@ public ResponseEntity FindByID(@PathVariable int id_package) {
 
     HttpHeaders headers = new HttpHeaders();
 
-    Packages packages = backageService.findById(id_package);
+    PackageYoga packages = backageService.findById(id_package);
     if (packages != null) {
         headers.add("Package_Header ", "Package found successfully. User details for ID " + id_package);
         return ResponseEntity.ok().headers(headers).body(packages);
@@ -57,8 +55,8 @@ public ResponseEntity FindByID(@PathVariable int id_package) {
 }
 
  @PostMapping("/")
- public ResponseEntity<List<Packages>> saveAll(@RequestBody List<Packages> packages){
-     List<Packages>  packageList = backageService.saveAll(packages) ;
+ public ResponseEntity<List<PackageYoga>> saveAll(@RequestBody List<PackageYoga> packages){
+     List<PackageYoga>  packageList = backageService.saveAll(packages) ;
      if(packageList != null || packageList.isEmpty() )
          return ResponseEntity.ok().body(packageList);
      else
